@@ -1,0 +1,19 @@
+.email-input {
+  border: 1px solid #dce0e5 !important;
+  box-shadow: none !important;
+}
+
+.email-input.ant-input-status-error {
+  border: 1px solid red !important;
+  box-shadow: none !important;
+}
+
+.password-input {
+  border: 1px solid #dce0e5 !important;
+  box-shadow: none !important;
+}
+
+.ant-input-status-error.ant-input-password {
+  border: 1px solid red !important;
+  box-shadow: none !important;
+}

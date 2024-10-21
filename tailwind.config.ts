@@ -4,16 +4,20 @@ const config: Config = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}"
   ],
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        textMuted: "#808B9A",
+        textDark: "#202326",
+        secondary: "#F8F9FC"
       },
-    },
+      backgroundImage: {
+        "main-gradient": "linear-gradient(to right, #45CC9C, #0C75E6)"
+      }
+    }
   },
-  plugins: [],
+  plugins: []
 };
 export default config;
