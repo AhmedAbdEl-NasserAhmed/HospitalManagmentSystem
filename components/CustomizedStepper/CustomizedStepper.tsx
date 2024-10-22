@@ -28,36 +28,40 @@ const CustomizedStepper = ({ steps }: Props) => {
         const isCurrentOrPrevStep = index < currentStep;
 
         return (
-          <React.Fragment key={index}>
-            <div className="flex items-center gap-6">
+          <div key={index} className="flex gap-6">
+            <div className="flex flex-col items-center gap-3">
               <span
                 className={`
                   bg-transparent flex items-center justify-center rounded-full w-9 h-9 border-2 border-solid
                   ${index === currentStep ? "border-defaultGreen" : ""}
                   ${isCurrentOrPrevStep ? "!text-white !bg-defaultGreen" : ""}
-                `}
+                  `}
               >
                 {isCurrentOrPrevStep ? "✓" : ""}
               </span>
-              <div className="flex gap-1 flex-col">
-                <h3
-                  className={
-                    isCurrentOrPrevStep
-                      ? " font-bold text-[1.2rem] transition-all duration-100"
-                      : "text-textMuted font-bold text-[1.2rem]  transition-all duration-100"
-                  }
+              {index !== steps.length - 1 && (
+                <span
+                  className={`  w-[0.1rem] h-10  ${
+                    isCurrentOrPrevStep ? "bg-defaultGreen" : "bg-borderLight"
+                  } "`}
                 >
-                  {step.title}
-                </h3>
-                <p className="text-textMuted">{step.description}</p>
-              </div>
+                  &nbsp;
+                </span>
+              )}
             </div>
-            {index !== steps.length - 1 && (
-              <span className=" ml-5 w-[0.1rem] h-14 bg-borderLight">
-                &nbsp;
-              </span>
-            )}
-          </React.Fragment>
+            <div className="flex gap-1 flex-col">
+              <h3
+                className={
+                  isCurrentOrPrevStep
+                    ? " font-bold text-[1.2rem] transition-all duration-100"
+                    : "text-textMuted font-bold text-[1.2rem]  transition-all duration-100"
+                }
+              >
+                {step.title}
+              </h3>
+              <p className="text-textMuted">{step.description}</p>
+            </div>
+          </div>
         );
       })}
     </div>

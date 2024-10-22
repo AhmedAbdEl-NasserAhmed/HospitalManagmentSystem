@@ -6,7 +6,7 @@ import { Form, Input } from "antd";
 import "./stylesheet.scss";
 import Link from "next/link";
 import CustomizedButton from "@/components/CustomizedButton";
-import Links from "@/components/Links";
+import Links from "@/ui/Links";
 
 interface FieldType {
   emailAddress?: string;

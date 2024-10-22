@@ -90,6 +90,85 @@ class SinglyLinkedList<T> {
     return this;
   }
 
+  get(index: number) {
+    if (index < 0 || index >= this._length) return null;
+
+    let returnedNode = this._head;
+
+    for (let i = 0; i < index; i++) {
+      returnedNode = returnedNode.next;
+    }
+
+    return returnedNode;
+  }
+
+  set(index: number, val: T) {
+    const updatedNode = this.get(index);
+
+    if (updatedNode) {
+      updatedNode.val = val;
+      return true;
+    }
+
+    return false;
+  }
+
+  insert(index: number, val: T) {
+    if (index < 0 || index > this._length) return null;
+
+    if (index === this._length) return !!this.push(val);
+
+    if (index === 0) return !!this.unshift(val);
+
+    const newNode = new Node(val);
+
+    const prevNode = this.get(index - 1);
+
+    newNode.next = prevNode.next;
+
+    prevNode.next = newNode;
+
+    this._length++;
+
+    return true;
+  }
+
+  remove(index: number) {
+    if (index < 0 || index >= this._length) return null;
+
+    if (index === this._length - 1) return this.pop();
+
+    if (index === 0) return this.shift();
+
+    const PrevNode = this.get(index - 1);
+
+    const removedNode = PrevNode.next;
+
+    PrevNode.next = removedNode.next;
+
+    this._length--;
+
+    return removedNode;
+  }
+
+  reverse() {
+    let node = this._head;
+    this._head = this._tail;
+    this._tail = node;
+    let prev = null;
+    let next = null;
+
+    for (let i = 0; i < this._length; i++) {
+      next = node.next;
+
+      node.next = prev;
+
+      prev = node;
+
+      node = next;
+    }
+  }
+
   getLength() {
     return this._length;
   }
@@ -101,13 +180,15 @@ firstSingleLinkedList.push("hey");
 firstSingleLinkedList.push("Ahmed");
 firstSingleLinkedList.push("Nasser");
 firstSingleLinkedList.push("Developer");
-firstSingleLinkedList.unshift("Hello Again");
+firstSingleLinkedList.push("Hello Again");
+
+firstSingleLinkedList.reverse();
 
 console.log(firstSingleLinkedList);
 
 const Links = () => {
   return (
-    <ul className="flex gap-8 justify-center items-center text-[1.2rem] text-black ">
+    <ul className="flex gap-6 justify-center items-center text-[1.2rem] text-black ">
       <li>Terms</li>
       <li>Privacy</li>
       <li>Help Center</li>

@@ -1,7 +1,7 @@
 "use client";
 
 import CustomizedButton from "@/components/CustomizedButton";
-import Links from "@/components/Links";
+import Links from "@/ui/Links";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
