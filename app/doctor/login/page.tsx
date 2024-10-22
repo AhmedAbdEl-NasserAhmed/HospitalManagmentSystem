@@ -91,7 +91,7 @@ const SignUp = () => {
             <p className="text-[1.4rem]">
               don&apos;t have an account ?{" "}
               <Link
-                href=""
+                href="/doctor/signup/createaccount"
                 className="font-bold bg-clip-text bg-main-gradient text-transparent "
               >
                 Sign Up

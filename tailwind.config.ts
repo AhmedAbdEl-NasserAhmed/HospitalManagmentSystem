@@ -11,7 +11,9 @@ const config: Config = {
       colors: {
         textMuted: "#808B9A",
         textDark: "#202326",
-        secondary: "#F8F9FC"
+        secondary: "#F8F9FC",
+        borderLight: "#DCE0E5",
+        defaultGreen: "#48BB78"
       },
       backgroundImage: {
         "main-gradient": "linear-gradient(to right, #45CC9C, #0C75E6)"

@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import todoSlice from "./features/todos/todoSlice";
+import stepperSlice from "./features/stepper/stepperSlice";
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
-      todos: todoSlice
+      stepper: stepperSlice
     }
   });
 };
