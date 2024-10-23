@@ -37,15 +37,26 @@ const CustomizedStepper = ({ steps }: Props) => {
                   ${isCurrentOrPrevStep ? "!text-white !bg-defaultGreen" : ""}
                   `}
               >
-                {isCurrentOrPrevStep ? "✓" : ""}
+                <span
+                  className={`transition-all duration-300  ${
+                    isCurrentOrPrevStep ? "opacity-1" : "opacity-0"
+                  }`}
+                >
+                  &#10003;
+                </span>
               </span>
               {index !== steps.length - 1 && (
-                <span
-                  className={`  w-[0.1rem] h-10  ${
-                    isCurrentOrPrevStep ? "bg-defaultGreen" : "bg-borderLight"
-                  } "`}
-                >
-                  &nbsp;
+                <span className="relative  w-[0.1rem] h-20 bg-borderLight ">
+                  <span
+                    className={` absolute h-full z-10  ${
+                      isCurrentOrPrevStep
+                        ? " w-full transition-all duration-300 bg-defaultGreen"
+                        : "w-0"
+                    } "`}
+                  >
+                    {" "}
+                    &nbsp;
+                  </span>
                 </span>
               )}
             </div>
