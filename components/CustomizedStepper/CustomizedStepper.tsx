@@ -1,6 +1,6 @@
 "use client";
 
-import { init } from "@/lib/features/stepper/stepperSlice";
+import { init } from "@/lib/features/slices/stepper/stepperSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import React, { useEffect } from "react";
 

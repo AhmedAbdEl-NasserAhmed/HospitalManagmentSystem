@@ -5,12 +5,12 @@ import Link from "next/link";
 
 const layout = ({ children }) => {
   return (
-    <div className="grid grid-rows-[10rem_1fr]">
+    <div className="grid grid-rows-[10rem_1fr]  h-screen">
       <nav className="p-[3rem] bg-white">
         <Image src="/images/logo.png" alt="Logo" height={40} width={130} />
       </nav>
       <div className="flex">
-        <div className="w-[48rem] bg-secondary h-[calc(100vh-100px)]  px-[4rem] py-[3.5rem] flex flex-col gap-[3rem]">
+        <div className="w-[48rem] bg-secondary px-[4rem] py-[3.5rem] flex flex-col gap-[3rem]">
           <div>
             <h3 className="text-[2.4rem] font-extrabold">
               Welcome to Tiryaaq!

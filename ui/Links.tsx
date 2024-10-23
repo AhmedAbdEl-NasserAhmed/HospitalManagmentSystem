@@ -137,12 +137,63 @@ class DoubleLinkedList<T> {
 
     return true;
   }
+
+  insert(index: number, val: T) {
+    if (index < 0 || index >= this._length) return null;
+
+    if (index === 0) return !!this.unshift(val);
+
+    if (index === this._length) return !!this.push(val);
+
+    const newNode = new Node(val);
+
+    const prevNode = this.get(index - 1);
+
+    const afterNode = prevNode.next;
+
+    //A B <- Z-> C
+
+    prevNode.next = newNode;
+
+    newNode.next = afterNode;
+
+    newNode.prev = prevNode;
+
+    afterNode.prev = newNode;
+
+    this._length++;
+
+    return true;
+  }
+
+  remove(index: number) {
+    if (index < 0 || index >= this._length) return undefined;
+
+    if (index === 0) return !!this.shift();
+
+    if (index === this._length - 1) return !!this.pop();
+
+    const poppedNode = this.get(index);
+
+    poppedNode.prev.next = poppedNode.next;
+
+    poppedNode.next.prev = poppedNode.prev;
+
+    poppedNode.next = null;
+
+    poppedNode.prev = null;
+
+    this._length--;
+
+    return poppedNode;
+  }
 }
 
 const doublyLinkedList = new DoubleLinkedList();
 
 doublyLinkedList.push("Double linked list check");
 doublyLinkedList.push("Double linked list check again");
+//Test Test Test
 doublyLinkedList.push("Double linked list check again 123");
 doublyLinkedList.push("Double linked list check again 456");
 doublyLinkedList.push("Double linked list check again 951");
@@ -150,7 +201,8 @@ doublyLinkedList.push("Double linked list check again 357");
 doublyLinkedList.push("Double linked list check again 852");
 doublyLinkedList.push("Double linked list check again 965");
 
-console.log(doublyLinkedList.set(10, "hello"));
+doublyLinkedList.insert(2, "Test Test Test");
+
 console.log("doublyLinkedList", doublyLinkedList);
 
 const Links = () => {

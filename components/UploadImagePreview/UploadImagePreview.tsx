@@ -32,7 +32,7 @@ const UploadImagePreview = ({ onChange }: Props) => {
     <div className="flex flex-col gap-6 mt-10">
       <div
         onClick={triggerFileInput}
-        className="flex justify-center items-center relative h-48 w-48 rounded-full border-2 border-borderLight border-solid cursor-pointer"
+        className="flex justify-center items-center relative h-36 w-36 rounded-full border-2 border-borderLight border-solid cursor-pointer"
       >
         {imageSrc && (
           <Image className="rounded-full" src={imageSrc} alt="profile" fill />

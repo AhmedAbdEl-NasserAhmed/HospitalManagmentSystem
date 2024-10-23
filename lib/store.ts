@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import stepperSlice from "./features/stepper/stepperSlice";
+import stepperSlice from "./features/slices/stepper/stepperSlice";
 
 export const makeStore = () => {
   return configureStore({

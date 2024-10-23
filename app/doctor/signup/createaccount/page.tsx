@@ -2,7 +2,7 @@
 
 import CustomizedButton from "@/components/CustomizedButton";
 import { passwordRegex } from "@/const/const";
-import { nextStep } from "@/lib/features/stepper/stepperSlice";
+import { nextStep } from "@/lib/features/slices/stepper/stepperSlice";
 import { useAppDispatch } from "@/lib/hooks";
 import type { FormProps } from "antd";
 
@@ -34,6 +34,14 @@ const CreateAccountPage = () => {
     console.log("Failed:", errorInfo);
   };
 
+  const prefixSelector = (
+    <Form.Item name="prefix" noStyle>
+      <Select>
+        <Select.Option value="02">+02</Select.Option>
+      </Select>
+    </Form.Item>
+  );
+
   return (
     <div className=" px-[4rem] py-[3.5rem]">
       <div className="flex  flex-col gap-8 items-start m-auto w-[48rem]">
@@ -55,12 +63,13 @@ const CreateAccountPage = () => {
         >
           <Form.Item<FieldType>
             label={<span className="text-textDark">Name</span>}
+            validateTrigger={false}
             name="name"
             rules={[
               {
                 required: true,
                 min: 6,
-                message: "Please enter a name not less than 6 characters"
+                message: "Please a name not less than 6 characters"
               }
             ]}
           >
@@ -89,11 +98,11 @@ const CreateAccountPage = () => {
               { required: true, message: "Please input your phone number!" }
             ]}
           >
-            <Form.Item name="prefix" noStyle>
-              <Select placeholder="Enter your phone number">
-                <Select.Option value="02">+02</Select.Option>
-              </Select>
-            </Form.Item>
+            <Input
+              placeholder="Enter Phone Number"
+              addonBefore={prefixSelector}
+              style={{ width: "100%" }}
+            />
           </Form.Item>
 
           <Form.Item

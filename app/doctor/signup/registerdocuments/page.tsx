@@ -5,17 +5,20 @@ import { InboxOutlined } from "@ant-design/icons";
 import type { FormProps } from "antd";
 import CustomizedButton from "@/components/CustomizedButton";
 import Dragger from "antd/es/upload/Dragger";
+import { useAppDispatch } from "@/lib/hooks";
+import { nextStep } from "@/lib/features/slices/stepper/stepperSlice";
 
 type FieldType = {
   upload?: string;
 };
 
 const RegisterDocuments = () => {
+  const dispatch = useAppDispatch();
+
   const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
     console.log("Success:", values);
 
-    // push("/doctor/signup/registerdocuments");
-    // dispatch(nextStep());
+    dispatch(nextStep());
   };
 
   const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
