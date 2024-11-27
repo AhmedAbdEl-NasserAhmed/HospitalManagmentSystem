@@ -38,3 +38,8 @@ next-env.d.ts
 
 # text
 singleLinkedList.txt
+DoubleLinkedList.txt
+Stack.txt
+Queue.txt
+BST.txt
+tree.txt

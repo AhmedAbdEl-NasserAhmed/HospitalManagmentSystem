@@ -24,7 +24,7 @@ const CreateAccountPage = () => {
   const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
     console.log("Success:", values);
 
-    push("/doctor/signup/personaldetails");
+    push("/doctor/personaldetails");
     dispatch(nextStep());
   };
 

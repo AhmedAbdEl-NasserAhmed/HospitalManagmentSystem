@@ -1,8 +1,12 @@
-// src/features/todos/todoSlice.js
+import SessionStorage from "@/helpers/sessionStorage";
 import { createSlice } from "@reduxjs/toolkit";
 
+let step = null;
+
+step = SessionStorage.getItem("step");
+
 const initialState = {
-  currentStep: 0,
+  currentStep: JSON.parse(step) || 0,
   Length: 0
 };
 
@@ -16,10 +20,14 @@ const stepperSlice = createSlice({
     nextStep: (state) => {
       if (state.currentStep < 0 || state.currentStep === state.Length) return;
       state.currentStep++;
+    },
+
+    reset: (state) => {
+      state.currentStep = 0;
     }
   }
 });
 
-export const { nextStep, init } = stepperSlice.actions;
+export const { nextStep, init, reset } = stepperSlice.actions;
 
 export default stepperSlice.reducer;

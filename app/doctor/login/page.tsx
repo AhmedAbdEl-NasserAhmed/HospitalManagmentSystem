@@ -1,31 +1,11 @@
-"use client";
-
-import Image from "next/image";
-import type { FormProps } from "antd";
-import { Form, Input } from "antd";
-import "./stylesheet.scss";
-import Link from "next/link";
-import CustomizedButton from "@/components/CustomizedButton";
+import SignInFormDoctor from "@/components/Forms/Doctor/SignInFormDoctor";
 import Links from "@/ui/Links";
+import Image from "next/image";
+import Link from "next/link";
 
-interface FieldType {
-  emailAddress?: string;
-  password?: string;
-}
-
-const SignUp = () => {
-  const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-    console.log("Success:", values);
-  };
-
-  const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
-    errorInfo
-  ) => {
-    console.log("Failed:", errorInfo);
-  };
-
+const SignIn = () => {
   return (
-    <div className="flex bg-white  h-screen">
+    <div className="flex bg-white h-screen">
       <div className="bg-[url('/images/SignUpPage.jpg')] bg-cover bg-no-repeat bg-right basis-[72rem] opacity-80 ">
         &nbsp;
       </div>
@@ -39,59 +19,11 @@ const SignUp = () => {
                 Please sign in to continue
               </p>
             </div>
-            <Form
-              layout="vertical"
-              onFinish={onFinish}
-              onFinishFailed={onFinishFailed}
-              autoComplete="off"
-              requiredMark={false}
-            >
-              <Form.Item<FieldType>
-                label={<span className="text-textDark">Email Address</span>}
-                name="emailAddress"
-                validateTrigger={false}
-                rules={[
-                  {
-                    required: true,
-                    message: "Please enter a valid Email Address",
-                    type: "email"
-                  }
-                ]}
-              >
-                <Input className="email-input" placeholder="user@example.com" />
-              </Form.Item>
-
-              <Form.Item<FieldType>
-                label={<span className="text-textDark">Password</span>}
-                name="password"
-                validateTrigger={false}
-                rules={[
-                  { required: true, message: "Please enter your password" }
-                ]}
-              >
-                <Input.Password
-                  className="password-input"
-                  placeholder="Password"
-                />
-              </Form.Item>
-
+            <SignInFormDoctor />
+            <p className="text-[1.2rem]">
+              Don&apos;t have an account ?{" "}
               <Link
-                href="/doctor/forgetpassword"
-                className="font-bold bg-clip-text bg-main-gradient !text-transparent "
-              >
-                Forget your password ?
-              </Link>
-
-              <div className="mt-5">
-                <CustomizedButton size="large" type="submit">
-                  Sign in
-                </CustomizedButton>
-              </div>
-            </Form>
-            <p className="text-[1.4rem]">
-              don&apos;t have an account ?{" "}
-              <Link
-                href="/doctor/signup/createaccount"
+                href="/doctor/createaccount"
                 className="font-bold bg-clip-text bg-main-gradient text-transparent "
               >
                 Sign Up
@@ -105,4 +37,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignIn;

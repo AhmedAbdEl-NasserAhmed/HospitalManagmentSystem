@@ -4,8 +4,8 @@ import CustomizedButton from "@/components/CustomizedButton";
 import UploadImagePreview from "@/components/UploadImagePreview/UploadImagePreview";
 import { nextStep } from "@/lib/features/slices/stepper/stepperSlice";
 import { useAppDispatch } from "@/lib/hooks";
-import { DatePicker, Form, Input, Select } from "antd";
 import type { FormProps } from "antd";
+import { DatePicker, Form, Input, Select } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { useRouter } from "next/navigation";
 
@@ -26,7 +26,7 @@ const PersonalDetails = () => {
   const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
     console.log("Success:", values);
 
-    push("/doctor/signup/registerdocuments");
+    push("/doctor/registerdocuments");
     dispatch(nextStep());
   };
 
