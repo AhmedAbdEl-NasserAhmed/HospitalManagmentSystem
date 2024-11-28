@@ -31,18 +31,27 @@ const CustomizedStepper = ({ steps }: Props) => {
           <div key={index} className="flex gap-6">
             <div className="flex flex-col items-center gap-3">
               <span
-                className={`
-                  bg-transparent flex items-center justify-center rounded-full w-9 h-9 border-2 border-solid
-                  ${index === currentStep ? "border-defaultGreen" : ""}
-                  ${isCurrentOrPrevStep ? "!text-white !bg-defaultGreen" : ""}
-                  `}
+                className={`${
+                  index === currentStep
+                    ? "bg-main-gradient p-[1.5px] "
+                    : "bg-borderLight p-[1.5px]"
+                }
+                ${isCurrentOrPrevStep ? "bg-defaultGreen" : ""}               
+                rounded-full w-9 h-9 `}
               >
                 <span
-                  className={`transition-all duration-300  ${
-                    isCurrentOrPrevStep ? "opacity-1" : "opacity-0"
-                  }`}
+                  className={`
+                  flex items-center justify-center bg-secondary w-full h-full rounded-full
+                  ${isCurrentOrPrevStep ? "!text-white !bg-defaultGreen" : ""}
+                  `}
                 >
-                  &#10003;
+                  <span
+                    className={`transition-all duration-300  ${
+                      isCurrentOrPrevStep ? "opacity-1" : "opacity-0"
+                    }`}
+                  >
+                    &#10003;
+                  </span>
                 </span>
               </span>
               {index !== steps.length - 1 && (

@@ -1,7 +1,6 @@
 "use client";
 
 import CustomizedButton from "@/components/CustomizedButton";
-import { passwordRegex } from "@/const/const";
 import { nextStep } from "@/lib/features/slices/stepper/stepperSlice";
 import { useAppDispatch } from "@/lib/hooks";
 import type { FormProps } from "antd";
@@ -112,11 +111,6 @@ const CreateAccountPage = () => {
               {
                 required: true,
                 message: "Please enter a valid password!"
-              },
-              {
-                pattern: passwordRegex,
-                message:
-                  "Password must be at least 10 characters, include one uppercase letter, one lowercase letter, one number, and one special character."
               }
             ]}
             hasFeedback

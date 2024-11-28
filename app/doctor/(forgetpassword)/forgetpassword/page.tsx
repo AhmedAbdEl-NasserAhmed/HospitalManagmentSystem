@@ -1,32 +1,9 @@
-"use client";
-
-import CustomizedButton from "@/components/CustomizedButton";
+import VerifyForgetPasswordEmail from "@/components/Forms/Doctor/VerifyForgetPasswordEmail";
 import Links from "@/ui/Links";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
-import type { FormProps } from "antd";
-import { Form, Input } from "antd";
-import { useRouter } from "next/navigation";
 
-interface FieldType {
-  emailAddress?: string;
-}
-
-const FrogetPassword = () => {
-  const { push } = useRouter();
-
-  const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-    console.log("Success:", values);
-    push("/doctor/forgetpassword/verifycode");
-  };
-
-  const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
-    errorInfo
-  ) => {
-    console.log("Failed:", errorInfo);
-  };
-
+const ForgetPassword = () => {
   return (
     <div className="bg-secondary h-screen flex flex-col">
       <div className="h-[10rem] px-[15rem] py-[5rem]">
@@ -47,35 +24,7 @@ const FrogetPassword = () => {
             will send you verification code
           </p>
         </div>
-        <Form
-          layout="vertical"
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
-          autoComplete="off"
-          requiredMark={false}
-        >
-          <Form.Item<FieldType>
-            label={<span className="text-textDark">Email Address</span>}
-            name="emailAddress"
-            validateTrigger={false}
-            rules={[
-              {
-                required: true,
-                message: "Please enter a valid Email Address",
-                type: "email"
-              }
-            ]}
-          >
-            <Input className="email-input" placeholder="user@example.com" />
-          </Form.Item>
-
-          <div className="mt-5">
-            <CustomizedButton size="large" type="submit">
-              Send Code
-            </CustomizedButton>
-          </div>
-        </Form>
-
+        <VerifyForgetPasswordEmail />
         <Link
           href="/doctor/login"
           className="flex justify-center font-bold bg-clip-text bg-main-gradient text-transparent text-xl "
@@ -90,4 +39,4 @@ const FrogetPassword = () => {
   );
 };
 
-export default FrogetPassword;
+export default ForgetPassword;

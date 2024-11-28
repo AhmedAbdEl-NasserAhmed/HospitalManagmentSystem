@@ -1,32 +1,11 @@
 "use client";
 
-import CustomizedButton from "@/components/CustomizedButton";
+import VerifyCodeForm from "@/components/Forms/Doctor/VerifyCodeForm";
 import Links from "@/ui/Links";
 import Image from "next/image";
 import Link from "next/link";
-import { Form, Input } from "antd";
-import "./stylesheet.scss";
-import type { FormProps } from "antd";
-import { useRouter } from "next/navigation";
-
-interface FieldType {
-  otp?: string;
-}
 
 const VerifyCode = () => {
-  const { push } = useRouter();
-
-  const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-    console.log("Success:", values.otp);
-    push("/doctor/forgetpassword/resetpassword");
-  };
-
-  const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
-    errorInfo
-  ) => {
-    console.log("Failed:", errorInfo);
-  };
-
   return (
     <div className="bg-secondary h-screen flex flex-col">
       <div className="h-[10rem] px-[15rem] py-[5rem]">
@@ -42,37 +21,11 @@ const VerifyCode = () => {
           </p>
         </div>
         <div>
-          <p className="text-textMuted text-[1.4rem]">Email Address</p>
-          <p className="text-textDark text-[1.6rem] font-bold">
-            user@example.com
-          </p>
+          <p className="text-textMuted text-[1.4rem]">Phone Number</p>
+          <p className="text-textDark text-[1.6rem] font-bold">+1264548978</p>
         </div>
-        <Form
-          layout="vertical"
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
-          autoComplete="off"
-          requiredMark={false}
-        >
-          <Form.Item<FieldType>
-            validateTrigger={false}
-            label={<span className="text-textDark">Verification Code</span>}
-            name="otp"
-            rules={[
-              {
-                required: true,
-                message: "Please enter The OTP"
-              }
-            ]}
-          >
-            <Input.OTP length={6} />
-          </Form.Item>
-          <div>
-            <CustomizedButton size="large" type="submit">
-              Verify Code
-            </CustomizedButton>
-          </div>
-        </Form>
+
+        <VerifyCodeForm />
 
         <h1 className="text-xl flex items-center gap-4 justify-center">
           Did I not get the code ?

@@ -11,9 +11,15 @@ import { z } from "zod";
 type Schema = z.infer<typeof doctorSignInFormSchema>;
 
 const SignInFormDoctor = () => {
-  const { register, handleSubmit } = useForm<Schema>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<Schema>({
     resolver: zodResolver(doctorSignInFormSchema)
   });
+
+  console.log(errors);
 
   function onSubmit() {}
 
@@ -22,17 +28,19 @@ const SignInFormDoctor = () => {
       <div className="flex flex-col gap-4">
         <CustomizedInput
           register={{ ...register("email") }}
-          widthValue="100"
+          widthValue="large"
           type="text"
           placeholder="user@example.com"
           label="Email Address"
+          errorMessage={errors["email"]?.message}
         />
         <CustomizedInput
           register={{ ...register("password") }}
-          widthValue="100"
+          widthValue="large"
           type="password"
           placeholder="Password"
           label="Password"
+          errorMessage={errors["password"]?.message}
         />
       </div>
       <Link

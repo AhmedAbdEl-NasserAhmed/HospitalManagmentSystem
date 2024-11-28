@@ -11,15 +11,12 @@ function customStyles(widthValue: string): { [key: string]: string } {
   };
 
   switch (widthValue) {
-    case "50": {
+    case "medium": {
       styles.width = "50%";
       break;
     }
-    case "75": {
-      styles.width = "75%";
-      break;
-    }
-    case "25": {
+
+    case "small": {
       styles.width = "25%";
       break;
     }
@@ -31,6 +28,8 @@ function customStyles(widthValue: string): { [key: string]: string } {
 }
 
 const CustomizedInput = ({
+  value,
+  onchange,
   label,
   type,
   placeholder,
@@ -41,12 +40,14 @@ const CustomizedInput = ({
   const [visibleContent, setVisibleContent] = useState<boolean>(false);
 
   return (
-    <div>
+    <div className="flex flex-col gap-2">
       <div className="flex flex-col gap-3">
         <label className="text-textDark text-[1.3rem]">{label}</label>
-        <div className="relative">
+
+        <div style={{ ...customStyles(widthValue) }} className="relative">
           <input
-            style={{ ...customStyles(widthValue) }}
+            onChange={onchange}
+            value={value}
             type={visibleContent ? "text" : type}
             placeholder={placeholder}
             className="px-4 py-3 border-borderLight border-[0.8px] rounded-md w-full placeholder:text-textMuted placeholder:text-lg outline-none text-xl"
