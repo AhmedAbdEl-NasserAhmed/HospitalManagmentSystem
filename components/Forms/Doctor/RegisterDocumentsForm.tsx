@@ -15,7 +15,6 @@ const RegisterDocumentsForm = () => {
   const dispatch = useAppDispatch();
 
   const {
-    watch,
     control,
     unregister,
     handleSubmit,

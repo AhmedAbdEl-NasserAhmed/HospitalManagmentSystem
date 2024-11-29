@@ -14,10 +14,11 @@ export interface CustomizedInputInterface {
 
 export interface StepObject {
   title: string;
-  description: string;
+  description?: string;
   initialContent?: string;
 }
 
 export interface CustomizedSteppersProps {
   steps: StepObject[];
+  direction: "vertical" | "horizontal";
 }

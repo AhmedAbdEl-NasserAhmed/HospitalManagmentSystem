@@ -1,4 +1,4 @@
-import CreateAccount from "@/components/Forms/Doctor/CreateAccount";
+import CreateAccountForm from "@/components/Forms/Doctor/CreateAccountForm";
 
 const CreateAccountPage = () => {
   return (
@@ -8,7 +8,7 @@ const CreateAccountPage = () => {
           <h3 className="text-[2.4rem] font-extrabold">Create an account</h3>
           <p className="text-textMuted text-[1.4rem]">This is a description.</p>
         </div>
-        <CreateAccount />
+        <CreateAccountForm />
       </div>
     </div>
   );

@@ -15,7 +15,7 @@ import { z } from "zod";
 
 type Schema = z.infer<typeof createDoctorAccountFromSchema>;
 
-const CreateAccount = () => {
+const CreateAccountForm = () => {
   const dispatch = useAppDispatch();
 
   const { push } = useRouter();
@@ -100,4 +100,4 @@ const CreateAccount = () => {
   );
 };
 
-export default CreateAccount;
+export default CreateAccountForm;

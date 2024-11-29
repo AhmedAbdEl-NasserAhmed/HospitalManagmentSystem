@@ -20,8 +20,8 @@ const Layout = ({ children }) => {
       <nav className="p-[3rem] bg-white border-b-2 border-borderLight">
         <Image src="/images/logo.png" alt="Logo" height={30} width={110} />
       </nav>
-      <div className="flex">
-        <div className="w-[40rem] bg-secondary px-[4rem] py-[3.5rem] flex flex-col gap-[3rem]">
+      <div className="flex ">
+        <div className="w-[35rem] bg-secondary px-[4rem] py-[3.5rem] flex flex-col gap-[3rem]">
           <div>
             <h3 className="text-[2.4rem] font-extrabold">
               Welcome to Tiryaaq!
@@ -33,6 +33,7 @@ const Layout = ({ children }) => {
           </div>
 
           <CustomizedStepper
+            direction="vertical"
             steps={[
               {
                 title: "Create an account",
