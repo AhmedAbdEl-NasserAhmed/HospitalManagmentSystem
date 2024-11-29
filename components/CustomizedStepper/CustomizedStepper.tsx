@@ -1,19 +1,11 @@
 "use client";
 
+import { CustomizedSteppersProps } from "@/interfaces/interfaces";
 import { init } from "@/lib/features/slices/stepper/stepperSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import React, { useEffect } from "react";
 
-type StepObject = {
-  title: string;
-  description: string;
-};
-
-interface Props {
-  steps: StepObject[];
-}
-
-const CustomizedStepper = ({ steps }: Props) => {
+const CustomizedStepper = ({ steps }: CustomizedSteppersProps) => {
   const dispatch = useAppDispatch();
 
   const currentStep = useAppSelector((state) => state.stepper.currentStep);
@@ -41,16 +33,12 @@ const CustomizedStepper = ({ steps }: Props) => {
               >
                 <span
                   className={`
-                  flex items-center justify-center bg-secondary w-full h-full rounded-full
+                  flex items-center justify-center bg-secondary w-full h-full rounded-full text-center
                   ${isCurrentOrPrevStep ? "!text-white !bg-defaultGreen" : ""}
                   `}
                 >
-                  <span
-                    className={`transition-all duration-300  ${
-                      isCurrentOrPrevStep ? "opacity-1" : "opacity-0"
-                    }`}
-                  >
-                    &#10003;
+                  <span className={`transition-all duration-300  `}>
+                    {isCurrentOrPrevStep ? "✓" : step.initialContent}
                   </span>
                 </span>
               </span>
@@ -59,7 +47,7 @@ const CustomizedStepper = ({ steps }: Props) => {
                   <span
                     className={` absolute h-full z-10  ${
                       isCurrentOrPrevStep
-                        ? " w-full transition-all duration-300 bg-defaultGreen"
+                        ? " w-full transition-all duration-300 bg-main-gradient"
                         : "w-0"
                     } "`}
                   >
@@ -89,3 +77,6 @@ const CustomizedStepper = ({ steps }: Props) => {
 };
 
 export default CustomizedStepper;
+// ${
+//   isCurrentOrPrevStep ? "opacity-1" : "opacity-0"
+// }

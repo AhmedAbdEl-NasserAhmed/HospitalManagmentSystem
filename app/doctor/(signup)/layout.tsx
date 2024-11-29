@@ -16,12 +16,12 @@ const Layout = ({ children }) => {
   }, [step]);
 
   return (
-    <div className="grid grid-rows-[8rem_1fr]  h-screen">
+    <div className="grid grid-rows-[8rem_1fr] h-screen">
       <nav className="p-[3rem] bg-white border-b-2 border-borderLight">
         <Image src="/images/logo.png" alt="Logo" height={30} width={110} />
       </nav>
       <div className="flex">
-        <div className="w-[48rem] bg-secondary px-[4rem] py-[3.5rem] flex flex-col gap-[3rem]">
+        <div className="w-[40rem] bg-secondary px-[4rem] py-[3.5rem] flex flex-col gap-[3rem]">
           <div>
             <h3 className="text-[2.4rem] font-extrabold">
               Welcome to Tiryaaq!
@@ -49,7 +49,7 @@ const Layout = ({ children }) => {
             ]}
           />
 
-          <p className="text-[1.4rem] mt-auto">
+          <p className="text-[1.2rem] mt-auto">
             Already have an account ?{" "}
             <Link
               href="/doctor/login"

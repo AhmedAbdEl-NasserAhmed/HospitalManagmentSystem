@@ -35,3 +35,47 @@ export const VerifyForgetPasswordOTPSchema = z.object({
     })
     .length(4, { message: "Please enter a valid OTP " })
 });
+
+export const createDoctorAccountFromSchema = z.object({
+  name: z
+    .string()
+    .min(1, { message: "Name is required" })
+    .max(50, { message: "Name must not exceed 50 characters" }),
+
+  email: z.string().email({ message: "Invalid email address" }),
+
+  phoneNumber: z
+    .string({
+      required_error: "Please enter a valid Phone Number"
+    })
+    .regex(/^\d{10,15}$/, {
+      message: "Phone number must be between 10 and 15 digits"
+    }),
+
+  password: z
+    .string()
+    .regex(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/,
+      {
+        message:
+          "Password must be at least 10 characters, include uppercase, lowercase, a number, and a special character"
+      }
+    ),
+
+  terms: z.boolean().refine((val) => val === true, {
+    message: "You must agree to the terms and privacy policy"
+  })
+});
+
+export const doctorRegisterDocumentsFormSchema = z.object({
+  resumeDocument: z
+    .instanceof(File, { message: "Please upload a valid resume file" })
+    .refine((file) => file !== null && file !== undefined, {
+      message: "Resume file is required"
+    }),
+  idDocument: z
+    .instanceof(File, { message: "Please upload a valid ID document file" })
+    .refine((file) => file !== null && file !== undefined, {
+      message: "ID document file is required"
+    })
+});

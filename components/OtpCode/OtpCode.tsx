@@ -1,8 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import OTPInput from "react-otp-input";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
-import { ChangeEvent, useState } from "react";
 
 const OtpCode = ({
   onChange,

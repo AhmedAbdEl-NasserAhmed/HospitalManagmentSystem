@@ -11,3 +11,13 @@ export interface CustomizedInputInterface {
   register?: UseFormRegisterReturn;
   onchange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
+
+export interface StepObject {
+  title: string;
+  description: string;
+  initialContent?: string;
+}
+
+export interface CustomizedSteppersProps {
+  steps: StepObject[];
+}
