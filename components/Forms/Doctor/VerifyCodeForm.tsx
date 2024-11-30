@@ -10,11 +10,16 @@ import { z } from "zod";
 
 type Schema = z.infer<typeof VerifyForgetPasswordOTPSchema>;
 
-const VerifyCodeForm = () => {
+const VerifyCodeForm = ({
+  to,
+  handleOnSubmit
+}: {
+  to: string;
+  handleOnSubmit?: () => void;
+}) => {
   const { push } = useRouter();
 
   const {
-    watch,
     handleSubmit,
     control,
     formState: { errors }
@@ -23,8 +28,8 @@ const VerifyCodeForm = () => {
   });
 
   function onSubmit(data: Schema) {
-    console.log(data);
-    push("/doctor/resetpassword");
+    push(to);
+    handleOnSubmit();
   }
 
   return (

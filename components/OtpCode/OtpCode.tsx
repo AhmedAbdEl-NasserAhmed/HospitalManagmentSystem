@@ -30,7 +30,6 @@ const OtpCode = ({
             ...props,
             onFocus: (e: React.FocusEvent<HTMLInputElement>) => {
               setCurrentInput(index);
-
               props.onFocus(e);
             },
             style: {

@@ -2,11 +2,8 @@
 
 import CustomizedButton from "@/components/CustomizedButton";
 import CustomizedInput from "@/components/CustomizedInput/CustomizedInput";
-import DragAndDrop from "@/components/DragAndDrop/DragAndDrop";
 import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
 import PhoneNumber from "@/components/PhoneNumber/PhoneNumber";
-import { nextStep } from "@/lib/features/slices/stepper/stepperSlice";
-import { useAppDispatch } from "@/lib/hooks";
 import { createDoctorAccountFromSchema } from "@/schemas/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -16,12 +13,9 @@ import { z } from "zod";
 type Schema = z.infer<typeof createDoctorAccountFromSchema>;
 
 const CreateAccountForm = () => {
-  const dispatch = useAppDispatch();
-
   const { push } = useRouter();
 
   const {
-    watch,
     control,
     handleSubmit,
     register,
@@ -31,8 +25,7 @@ const CreateAccountForm = () => {
   });
 
   function onSubmit() {
-    push("/doctor/personaldetails");
-    dispatch(nextStep());
+    push("/doctor/verifycodesignup");
   }
 
   return (
