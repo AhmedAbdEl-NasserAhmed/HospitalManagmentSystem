@@ -37,7 +37,7 @@ const CustomizedSelectMenu = ({
 
   useEffect(() => {
     onChange(listItems);
-  }, [listItems]);
+  }, [listItems, onChange]);
 
   return (
     <div ref={listRef} className="relative flex flex-col gap-4 ">

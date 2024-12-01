@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 
 import StoreProvider from "./StoreProvider";
 import "./globals.scss";
-import { AntdRegistry } from "@ant-design/nextjs-registry";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -27,7 +26,7 @@ export default function RootLayout({
           suppressHydrationWarning={true}
           className={`${inter.className} antialiased`}
         >
-          <AntdRegistry>{children}</AntdRegistry>
+          {children}
         </body>
       </html>
     </StoreProvider>

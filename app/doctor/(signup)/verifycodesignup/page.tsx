@@ -5,7 +5,7 @@ import { nextStep } from "@/lib/features/slices/stepper/stepperSlice";
 import { useAppDispatch } from "@/lib/hooks";
 import Link from "next/link";
 
-const verifyCodeSignUp = () => {
+const VerifyCodeSignUp = () => {
   const dispatch = useAppDispatch();
 
   return (
@@ -39,4 +39,4 @@ const verifyCodeSignUp = () => {
   );
 };
 
-export default verifyCodeSignUp;
+export default VerifyCodeSignUp;

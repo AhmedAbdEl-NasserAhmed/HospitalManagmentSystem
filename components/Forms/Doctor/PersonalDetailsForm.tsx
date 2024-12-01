@@ -3,16 +3,14 @@
 import CustomizedButton from "@/components/CustomizedButton";
 import CustomizedSelectMenu from "@/components/CustomizedSelectMenu/CustomizedSelectMenu";
 import ProfileImageCloudinary from "@/components/ProfileImageCloudinary/ProfileImageCloudinary";
-import { nextStep } from "@/lib/features/slices/stepper/stepperSlice";
 import { useAppDispatch } from "@/lib/hooks";
-import { CldUploadWidget, CloudinaryUploadWidgetInfo } from "next-cloudinary";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
-import { HiOutlinePlusSm } from "react-icons/hi";
 
 const PersonalDetailsForm = () => {
   const dispatch = useAppDispatch();
+
+  console.log(dispatch);
 
   const { push } = useRouter();
 
