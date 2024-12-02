@@ -1,9 +1,5 @@
-import dynamic from "next/dynamic";
+import DoctorSignUpSteps from "@/ui/DoctorSignUpSteps";
 import Image from "next/image";
-
-const DoctorSignUpSteps = dynamic(() => import("@/ui/DoctorSignUpSteps"), {
-  ssr: false
-});
 
 const Layout = ({ children }) => {
   return (
@@ -11,7 +7,7 @@ const Layout = ({ children }) => {
       <nav className="p-[3rem] bg-white border-b-2 border-borderLight">
         <Image src="/images/logo.png" alt="Logo" height={30} width={110} />
       </nav>
-      <div className="flex ">
+      <div className="flex">
         <DoctorSignUpSteps />
         <div className="grow">{children}</div>
       </div>

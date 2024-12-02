@@ -79,3 +79,80 @@ export const doctorRegisterDocumentsFormSchema = z.object({
       message: "ID document file is required"
     })
 });
+
+export const PersonalDetailsFormSchema = z.object({
+  image: z.string({
+    required_error: "Please upload an image"
+  }),
+  title: z.string({
+    required_error: "Please choose a title"
+  }),
+  name: z
+    .string()
+    .min(1, { message: "Name is required" })
+    .max(50, { message: "Name must not exceed 50 characters" }),
+  doctorSpecialties: z
+    .array(
+      z.enum([
+        "Internal Medicine",
+        "Pediatrics",
+        "General Surgery",
+        "Family Medicine",
+        "Obstetrics and Gynecology (OB-GYN)",
+        "Orthopedics",
+        "Cardiology",
+        "Dermatology",
+        "Psychiatry",
+        "Ophthalmology"
+      ])
+    )
+    .nonempty("Please select at least one specialty."),
+  doctorLanguages: z
+    .array(
+      z.enum([
+        "English",
+        "Chinese",
+        "Hindi",
+        "Spanish",
+        "French",
+        "Arabic",
+        "Bengali",
+        "Russian",
+        "Portuguese"
+      ])
+    )
+    .nonempty("Please select at least one language."),
+  doctorExperience: z.enum([
+    "Less than 1 year",
+    "1-2 years",
+    "3-5 years",
+    "6-9 years",
+    "10-14 years",
+    "15+ years"
+  ]),
+  city: z
+    .string({
+      required_error: "City is required."
+    })
+    .min(2, "City must have at least 2 characters."),
+  doctorGender: z.enum([
+    "Male",
+    "Female",
+    "Non-Binary",
+    "Prefer not to say",
+    "Other"
+  ]),
+  dateOfBirth: z
+    .string({
+      required_error: "Date of Birth is required."
+    })
+    .refine((date) => !isNaN(new Date(date).getTime()), {
+      message: "Invalid Date of Birth format."
+    }),
+  aboutMe: z
+    .string({
+      required_error: "Please write a brief about your self"
+    })
+    .min(1, "About Me must not be least 20 characters.")
+    .max(500, "About Me must not exceed 500 characters.")
+});

@@ -1,13 +1,16 @@
 import { CldUploadWidget, CloudinaryUploadWidgetInfo } from "next-cloudinary";
 import Image from "next/image";
 import { HiOutlinePlusSm } from "react-icons/hi";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 const ProfileImageCloudinary = ({
   onChange,
-  imageSrc
+  imageSrc,
+  errorMessage
 }: {
   onChange: (imageSrcCloudinary: string) => void;
   imageSrc: string;
+  errorMessage: string;
 }) => {
   return (
     <CldUploadWidget
@@ -37,6 +40,7 @@ const ProfileImageCloudinary = ({
                 <HiOutlinePlusSm />
               )}
             </span>
+            {errorMessage && <ErrorMessage message={errorMessage} />}
           </div>
         );
       }}

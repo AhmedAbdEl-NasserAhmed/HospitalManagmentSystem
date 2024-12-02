@@ -12,7 +12,7 @@ type Schema = z.infer<typeof VerifyForgetPasswordOTPSchema>;
 
 const VerifyCodeForm = ({
   to,
-  handleOnSubmit
+  handleOnSubmit = () => {}
 }: {
   to: string;
   handleOnSubmit?: () => void;

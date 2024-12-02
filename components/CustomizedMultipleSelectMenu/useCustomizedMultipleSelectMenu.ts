@@ -1,9 +1,9 @@
 "use client";
 
 import useClickOutside from "@/hooks/useClickOutside";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const useCustomizedSelectMenu = () => {
+const useCustomizedMultipleSelectMenu = (defaultValue: string[]) => {
   const [expandList, setExpandList] = useState<boolean>(false);
 
   const [listItems, setListItems] = useState<string[]>([]);
@@ -11,6 +11,10 @@ const useCustomizedSelectMenu = () => {
   const listRef = useClickOutside<HTMLDivElement>({
     closeFn: () => setExpandList(false)
   });
+
+  useEffect(() => {
+    setListItems(defaultValue);
+  }, []);
 
   return {
     expandList,
@@ -21,4 +25,4 @@ const useCustomizedSelectMenu = () => {
   };
 };
 
-export default useCustomizedSelectMenu;
+export default useCustomizedMultipleSelectMenu;

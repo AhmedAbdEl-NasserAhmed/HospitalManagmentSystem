@@ -41,6 +41,7 @@ const CreateAccountForm = () => {
         label="Name"
         errorMessage={errors["name"]?.message}
       />
+      
       <CustomizedInput
         register={{ ...register("email") }}
         widthValue="large"

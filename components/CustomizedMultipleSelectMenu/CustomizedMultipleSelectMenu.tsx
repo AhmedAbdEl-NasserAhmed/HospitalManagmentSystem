@@ -3,27 +3,28 @@
 import { useEffect } from "react";
 import ListOptions from "./ListOptions";
 import MainComponent from "./MainComponent";
-import useCustomizedSelectMenu from "./useCustomizedSelectMenu";
+import useCustomizedMultipleSelectMenu from "./useCustomizedMultipleSelectMenu";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
-const CustomizedSelectMenu = ({
-  multiple,
+const CustomizedMultipleSelectMenu = ({
   options,
   title,
   placeholder,
-  onChange
+  onChange,
+  errorMessage,
+  defaultValue = []
 }: {
-  multiple: boolean;
   options: { id: number; content: string }[];
   title: string;
   placeholder: string;
   onChange: (title: string[]) => void;
+  errorMessage?: string;
+  defaultValue?: string[];
 }) => {
   const { listItems, setListItems, listRef, setExpandList, expandList } =
-    useCustomizedSelectMenu();
+    useCustomizedMultipleSelectMenu(defaultValue);
 
   function handleAddToListItems(item: string) {
-    if (!multiple && listItems.length === 1) return;
-
     if (!listItems.includes(item)) {
       setListItems((data: string[]) => [...data, item]);
     }
@@ -41,7 +42,7 @@ const CustomizedSelectMenu = ({
 
   return (
     <div ref={listRef} className="relative flex flex-col gap-4 ">
-      <h2 className="capitalize text-xl">{title}</h2>
+      <h2 className=" text-xl">{title}</h2>
       <MainComponent
         listItems={listItems}
         deleteHandler={handleDeleteItemFromListItems}
@@ -49,15 +50,14 @@ const CustomizedSelectMenu = ({
         placeholder={placeholder}
       />
       <ListOptions
-        setExpandList={setExpandList}
-        multiple={multiple}
         expandList={expandList}
         listItems={listItems}
         handleAddToListItems={handleAddToListItems}
         options={options}
       />
+      {errorMessage && <ErrorMessage message={errorMessage} />}
     </div>
   );
 };
 
-export default CustomizedSelectMenu;
+export default CustomizedMultipleSelectMenu;

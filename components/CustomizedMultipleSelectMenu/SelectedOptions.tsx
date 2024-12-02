@@ -8,16 +8,16 @@ const SelectedOptions = ({
   deleteHandler: (item: string) => void;
 }) => {
   return (
-    <div className="flex items-center gap-3">
-      {listItems.map((item) => {
+    <div className="flex items-center gap-3 flex-wrap">
+      {listItems?.map((item) => {
         return (
           <div
-            className="flex items-center gap-3 px-2 py-1 bg-borderLight  text-black rounded-md"
+            className="flex items-center gap-3 px-2 py-1 bg-secondary  rounded-md"
             key={item}
           >
-            <h2>{item}</h2>
+            <h2 className="text-black">{item}</h2>
             <span
-              className="bg-white px-[0.4rem] py-[0.2rem] rounded-md text-sm"
+              className="bg-borderLight px-[0.4rem] py-[0.2rem] rounded-md text-sm text-black "
               onClick={() => deleteHandler(item)}
             >
               <HiX />
