@@ -35,7 +35,8 @@ const CustomizedInput = ({
   placeholder,
   errorMessage,
   register,
-  widthValue
+  widthValue,
+  defaultValue
 }: CustomizedInputInterface) => {
   const [visibleContent, setVisibleContent] = useState<boolean>(false);
 
@@ -46,6 +47,7 @@ const CustomizedInput = ({
 
         <div style={{ ...customStyles(widthValue) }} className="relative">
           <input
+            defaultValue={defaultValue}
             onChange={onchange}
             value={value}
             type={visibleContent ? "text" : type}

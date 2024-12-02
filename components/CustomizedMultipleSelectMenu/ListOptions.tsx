@@ -17,7 +17,7 @@ const ListOptions = ({
         options.length > 3 ? "overflow-y-scroll" : ""
       } `}
     >
-      <div className="contents bg-red-500">
+      <div className="contents">
         {listItems?.length === options.length && (
           <p className="flex items-center justify-center font-semibold h-full">
             No More Options !

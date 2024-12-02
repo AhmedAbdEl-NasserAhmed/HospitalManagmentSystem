@@ -1,10 +1,15 @@
 "use client";
 
-import CustomizedStepper from "@/components/CustomizedStepper/CustomizedStepper";
 import SessionStorage from "@/helpers/sessionStorage";
 import { useAppSelector } from "@/lib/hooks";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useEffect } from "react";
+
+const CustomizedStepper = dynamic(
+  () => import("@/components/CustomizedStepper/CustomizedStepper"),
+  { ssr: false }
+);
 
 const DoctorSignUpSteps = () => {
   const step = useAppSelector((state) => state.stepper.currentStep);

@@ -1,12 +1,15 @@
 "use client";
 
 import VerifyCodeForm from "@/components/Forms/Doctor/VerifyCodeForm";
+import SessionStorage from "@/helpers/sessionStorage";
 import { nextStep } from "@/lib/features/slices/stepper/stepperSlice";
 import { useAppDispatch } from "@/lib/hooks";
 import Link from "next/link";
 
 const VerifyCodeSignUp = () => {
   const dispatch = useAppDispatch();
+
+  const user = SessionStorage.getItem("user", true);
 
   return (
     <div className="px-[4rem] py-[3.5rem] ">
@@ -19,11 +22,13 @@ const VerifyCodeSignUp = () => {
         </div>
         <div>
           <p className="text-textMuted text-[1.4rem]">Phone Number</p>
-          <p className="text-textDark text-[1.6rem] font-bold">+1264548978</p>
+          <p className="text-textDark text-[1.6rem] font-bold">
+            +{user?.phoneNumber}
+          </p>
         </div>
         <VerifyCodeForm
           to="/doctor/personaldetails"
-          handleOnSubmit={() => dispatch(nextStep())}
+          handleOnSubmit={() => dispatch(nextStep(1))}
         />
         <h1 className="text-xl flex items-center gap-4 justify-center">
           Did I not get the code ?

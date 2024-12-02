@@ -9,7 +9,7 @@ const SelectedOptions = ({
 }) => {
   return (
     <div className="flex items-center gap-3 flex-wrap">
-      {listItems?.map((item) => {
+      {listItems?.map((item: string) => {
         return (
           <div
             className="flex items-center gap-3 px-2 py-1 bg-secondary  rounded-md"

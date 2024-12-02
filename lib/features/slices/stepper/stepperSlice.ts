@@ -17,9 +17,9 @@ const stepperSlice = createSlice({
     init(state, action) {
       state.Length = action.payload;
     },
-    nextStep: (state) => {
+    nextStep: (state, action) => {
       if (state.currentStep < 0 || state.currentStep === state.Length) return;
-      state.currentStep++;
+      state.currentStep = action.payload;
     },
 
     reset: (state) => {

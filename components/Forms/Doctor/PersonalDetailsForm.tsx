@@ -5,19 +5,27 @@ import CustomizedInput from "@/components/CustomizedInput/CustomizedInput";
 import CustomizedMultipleSelectMenu from "@/components/CustomizedMultipleSelectMenu/CustomizedMultipleSelectMenu";
 import CustomizedSingleSelectMenu from "@/components/CustomizedSingleSelectMenu/CustomizedSingleSelectMenu";
 import CustomizedTextArea from "@/components/CustomizedTextArea/CustomizedTextArea";
-import ProfileImageCloudinary from "@/components/ProfileImageCloudinary/ProfileImageCloudinary";
+import SessionStorage from "@/helpers/sessionStorage";
 import { nextStep } from "@/lib/features/slices/stepper/stepperSlice";
 import { useAppDispatch } from "@/lib/hooks";
 import { PersonalDetailsFormSchema } from "@/schemas/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
+
+const ProfileImageCloudinary = dynamic(
+  () => import("@/components/ProfileImageCloudinary/ProfileImageCloudinary"),
+  { ssr: false }
+);
 
 type Schema = z.infer<typeof PersonalDetailsFormSchema>;
 
 const PersonalDetailsForm = () => {
   const dispatch = useAppDispatch();
+
+  const user = SessionStorage.getItem("user", true);
 
   const { push } = useRouter();
 
@@ -28,12 +36,14 @@ const PersonalDetailsForm = () => {
     register,
     formState: { errors }
   } = useForm<Schema>({
+    defaultValues: user,
     resolver: zodResolver(PersonalDetailsFormSchema)
   });
 
-  function onSubmit() {
+  function onSubmit(data: Schema) {
+    SessionStorage.addItem("user", { ...user, ...data });
     push("/doctor/registerdocuments");
-    dispatch(nextStep());
+    dispatch(nextStep(2));
   }
 
   const formData = watch();
@@ -97,6 +107,7 @@ const PersonalDetailsForm = () => {
         name="doctorSpecialties"
         render={({ field: { onChange } }) => (
           <CustomizedMultipleSelectMenu
+            defaultValue={user?.doctorSpecialties}
             errorMessage={errors["doctorSpecialties"]?.message}
             placeholder="Choose your specialties"
             onChange={onChange}
@@ -122,6 +133,7 @@ const PersonalDetailsForm = () => {
           name="doctorLanguages"
           render={({ field: { onChange } }) => (
             <CustomizedMultipleSelectMenu
+              defaultValue={user?.doctorLanguages}
               errorMessage={errors["doctorLanguages"]?.message}
               placeholder="Choose the languages"
               onChange={onChange}
@@ -149,8 +161,9 @@ const PersonalDetailsForm = () => {
         <Controller
           control={control}
           name="doctorExperience"
-          render={({ field: { onChange } }) => (
+          render={({ field: { onChange, value } }) => (
             <CustomizedSingleSelectMenu
+              value={value}
               errorMessage={errors["doctorExperience"]?.message}
               onChange={onChange}
               placeholder="Choose years of Experience"
@@ -179,8 +192,10 @@ const PersonalDetailsForm = () => {
         <Controller
           control={control}
           name="doctorGender"
-          render={({ field: { onChange } }) => (
+          render={({ field: { onChange, value } }) => (
             <CustomizedSingleSelectMenu
+              value={value}
+              defaultValue={user?.doctorGender}
               placeholder="Select Gender"
               errorMessage={errors["doctorGender"]?.message}
               onChange={onChange}

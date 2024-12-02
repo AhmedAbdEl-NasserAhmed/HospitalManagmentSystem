@@ -1,4 +1,5 @@
 import DoctorSignUpSteps from "@/ui/DoctorSignUpSteps";
+import ProtectedRoute from "@/ui/ProtectedRoute";
 import Image from "next/image";
 
 const Layout = ({ children }) => {
@@ -9,7 +10,9 @@ const Layout = ({ children }) => {
       </nav>
       <div className="flex">
         <DoctorSignUpSteps />
-        <div className="grow">{children}</div>
+        <div className="grow">
+          <ProtectedRoute>{children}</ProtectedRoute>
+        </div>
       </div>
     </div>
   );

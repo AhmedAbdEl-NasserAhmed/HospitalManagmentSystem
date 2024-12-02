@@ -10,6 +10,7 @@ export interface CustomizedInputInterface {
   widthValue: "large" | "medium" | "small";
   register?: UseFormRegisterReturn;
   onchange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  defaultValue?: string;
 }
 
 export interface StepObject {

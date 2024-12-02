@@ -25,7 +25,7 @@ const ProfileImageCloudinary = ({
         return (
           <div className="flex flex-col gap-4 ">
             <h2 className="text-xl">Profile Photo</h2>
-            <span
+            <div
               onClick={() => open()}
               className="relative cursor-pointer text-3xl text-textMuted flex items-center justify-center w-32 h-32 rounded-full border-2 border-borderLight "
             >
@@ -39,7 +39,7 @@ const ProfileImageCloudinary = ({
               ) : (
                 <HiOutlinePlusSm />
               )}
-            </span>
+            </div>
             {errorMessage && <ErrorMessage message={errorMessage} />}
           </div>
         );

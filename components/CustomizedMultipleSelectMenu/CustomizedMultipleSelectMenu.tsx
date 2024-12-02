@@ -32,7 +32,7 @@ const CustomizedMultipleSelectMenu = ({
 
   function handleDeleteItemFromListItems(item: string) {
     setListItems((data: string[]) =>
-      data.filter((existedItem) => existedItem !== item)
+      data.filter((existedItem: string) => existedItem !== item)
     );
   }
 

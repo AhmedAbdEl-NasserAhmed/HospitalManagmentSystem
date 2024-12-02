@@ -1,5 +1,5 @@
 const SessionStorage = {
-  addItem(key: string, value: string, stringifyItem = true) {
+  addItem(key: string, value: any, stringifyItem = true) {
     if (typeof window !== "undefined" && window.sessionStorage) {
       if (stringifyItem) {
         sessionStorage.setItem(key, JSON.stringify(value));
@@ -9,11 +9,20 @@ const SessionStorage = {
     }
   },
 
-  getItem(key: string) {
+  getItem(key: string, shouldParse = false) {
     if (typeof window !== "undefined" && window.sessionStorage) {
-      return sessionStorage.getItem(key);
+      if (!shouldParse) {
+        return sessionStorage.getItem(key);
+      } else {
+        return JSON.parse(sessionStorage.getItem(key));
+      }
     }
     return null;
+  },
+  deleteItem(key: string) {
+    if (typeof window !== "undefined" && window.sessionStorage) {
+      sessionStorage.removeItem(key);
+    }
   }
 };
 

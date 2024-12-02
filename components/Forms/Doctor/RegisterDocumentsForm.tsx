@@ -2,10 +2,12 @@
 
 import CustomizedButton from "@/components/CustomizedButton";
 import DragAndDrop from "@/components/DragAndDrop/DragAndDrop";
+import SessionStorage from "@/helpers/sessionStorage";
 import { nextStep } from "@/lib/features/slices/stepper/stepperSlice";
 import { useAppDispatch } from "@/lib/hooks";
 import { doctorRegisterDocumentsFormSchema } from "@/schemas/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -13,6 +15,8 @@ type Schema = z.infer<typeof doctorRegisterDocumentsFormSchema>;
 
 const RegisterDocumentsForm = () => {
   const dispatch = useAppDispatch();
+
+  const { push } = useRouter();
 
   const {
     control,
@@ -24,7 +28,12 @@ const RegisterDocumentsForm = () => {
   });
 
   function onSubmit() {
-    dispatch(nextStep());
+    dispatch(nextStep(3));
+    setTimeout(() => {
+      push("/doctor/login");
+      SessionStorage.deleteItem("step");
+      SessionStorage.deleteItem("user");
+    }, 100);
   }
 
   return (

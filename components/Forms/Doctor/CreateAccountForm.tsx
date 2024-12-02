@@ -4,6 +4,7 @@ import CustomizedButton from "@/components/CustomizedButton";
 import CustomizedInput from "@/components/CustomizedInput/CustomizedInput";
 import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
 import PhoneNumber from "@/components/PhoneNumber/PhoneNumber";
+import SessionStorage from "@/helpers/sessionStorage";
 import { createDoctorAccountFromSchema } from "@/schemas/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -15,17 +16,21 @@ type Schema = z.infer<typeof createDoctorAccountFromSchema>;
 const CreateAccountForm = () => {
   const { push } = useRouter();
 
+  const user = SessionStorage.getItem("user", true);
+
   const {
     control,
     handleSubmit,
     register,
     formState: { errors }
   } = useForm<Schema>({
+    defaultValues: user,
     resolver: zodResolver(createDoctorAccountFromSchema)
   });
 
-  function onSubmit() {
+  function onSubmit(data: Schema) {
     push("/doctor/verifycodesignup");
+    SessionStorage.addItem("user", { ...user, ...data });
   }
 
   return (
@@ -41,7 +46,7 @@ const CreateAccountForm = () => {
         label="Name"
         errorMessage={errors["name"]?.message}
       />
-      
+
       <CustomizedInput
         register={{ ...register("email") }}
         widthValue="large"
@@ -50,6 +55,7 @@ const CreateAccountForm = () => {
         label="Email Address"
         errorMessage={errors["email"]?.message}
       />
+
       <Controller
         control={control}
         name="phoneNumber"
@@ -61,6 +67,7 @@ const CreateAccountForm = () => {
           />
         )}
       />
+
       <CustomizedInput
         register={{ ...register("password") }}
         widthValue="large"
@@ -69,6 +76,7 @@ const CreateAccountForm = () => {
         label="Password"
         errorMessage={errors["password"]?.message}
       />
+
       <div className="flex items-start gap-4 text-xl flex-col">
         <div className="flex items-center gap-4">
           <input type="checkbox" {...register("terms")} />
