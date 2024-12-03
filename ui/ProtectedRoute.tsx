@@ -9,7 +9,7 @@ const ProtectedRoute = ({ children }: { children: ReactNode }) => {
 
   const pathName = usePathname().split("/").at(-1);
 
-  const isAuthenticated = true;
+  const isAuthenticated = false;
 
   const { back } = useRouter();
 

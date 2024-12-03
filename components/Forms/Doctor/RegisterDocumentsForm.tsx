@@ -30,7 +30,7 @@ const RegisterDocumentsForm = () => {
   function onSubmit() {
     dispatch(nextStep(3));
     setTimeout(() => {
-      push("/doctor/login");
+      push("/doctor/dashboard");
       SessionStorage.deleteItem("step");
       SessionStorage.deleteItem("user");
     }, 100);

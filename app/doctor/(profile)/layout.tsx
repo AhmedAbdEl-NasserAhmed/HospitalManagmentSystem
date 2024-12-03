@@ -1,6 +1,6 @@
 const layout = ({ children }) => {
   return (
-    <div>
+    <div className="flex items-center">
       <div>hello Doctor</div>
       <div>{children}</div>
     </div>
