@@ -1,5 +1,6 @@
 import SignInFormDoctor from "@/components/Forms/Doctor/SignInFormDoctor";
 import Links from "@/ui/Links";
+import Logo from "@/ui/Logo";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -12,7 +13,7 @@ const SignIn = () => {
       <div className="flex flex-col gap-4 grow px-[10rem] py-[3.2rem]">
         <div className="p-[2.4rem] w-[44rem] h-[65rem] flex justify-center items-center ">
           <div className="flex flex-col gap-[2.4rem] w-full">
-            <Image src="/images/logo.png" alt="Logo" height={40} width={150} />
+            <Logo />
             <div>
               <h3 className="text-[2.4rem] font-extrabold">Welcome Back</h3>
               <p className="text-textMuted text-[1.4rem]">
