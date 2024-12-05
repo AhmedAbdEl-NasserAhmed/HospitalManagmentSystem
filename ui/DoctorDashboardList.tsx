@@ -72,7 +72,7 @@ const DoctorDashboardList = ({
         {menuItems.map((link) => (
           <li
             key={link.id}
-            className={`relative px-4   ${
+            className={`relative px-4 hover:bg-secondaryBackground transition-all duration-200   ${
               pathName === link.name ? "bg-secondaryBackground" : ""
             }`}
           >

@@ -19,7 +19,7 @@ const CustomizedStepper = ({ steps, direction }: CustomizedSteppersProps) => {
   const currentDirection = direction === "vertical" ? "flex-col" : "flex-row";
 
   return (
-    <div className={`flex  ${currentDirection}  gap-3`}>
+    <div className={`flex  ${currentDirection}  gap-6`}>
       {steps.map((step, index) => {
         const isCurrentOrPrevStep = index < currentStep;
 
@@ -63,15 +63,11 @@ const CustomizedStepper = ({ steps, direction }: CustomizedSteppersProps) => {
               <Separator
                 styles={{
                   containerStyles: `relative   
-                  ${
-                    index === steps.length - 1 && direction === "vertical"
-                      ? "hidden"
-                      : ""
-                  }
+                  ${index === steps.length - 1 ? "hidden" : ""}
                   ${
                     direction === "vertical"
                       ? "w-[0.1rem] h-20"
-                      : "h-[0.1rem] w-20"
+                      : "h-[0.1rem] w-20 order-1 "
                   }   bg-borderLight`,
                   elementStyles: `absolute h-full z-10 ${
                     isCurrentOrPrevStep
@@ -80,16 +76,29 @@ const CustomizedStepper = ({ steps, direction }: CustomizedSteppersProps) => {
                   }`
                 }}
               />
-            </div>
-            <Details
-              className={` w-max ${
-                isCurrentOrPrevStep
-                  ? " font-bold text-[1.2rem] transition-all duration-100 "
-                  : "text-textMuted font-bold text-[1.2rem] transition-all duration-100"
-              }  
+              {direction === "horizontal" && (
+                <Details
+                  className={` w-max ${
+                    isCurrentOrPrevStep
+                      ? " font-bold text-[1.2rem] transition-all duration-100 "
+                      : "text-textMuted font-bold text-[1.2rem] transition-all duration-100"
+                  }  
                `}
-              item={step}
-            />
+                  item={step}
+                />
+              )}
+            </div>
+            {direction === "vertical" && (
+              <Details
+                className={` w-max ${
+                  isCurrentOrPrevStep
+                    ? " font-bold text-[1.2rem] transition-all duration-100 "
+                    : "text-textMuted font-bold text-[1.2rem] transition-all duration-100"
+                }  
+               `}
+                item={step}
+              />
+            )}
           </div>
         );
       })}

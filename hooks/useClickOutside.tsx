@@ -3,9 +3,11 @@
 import { useEffect, useRef } from "react";
 
 const useClickOutside = <T extends HTMLElement>({
-  closeFn
+  closeFn,
+  stopBubbling = false
 }: {
   closeFn: () => void;
+  stopBubbling?: boolean;
 }) => {
   const ref = useRef<T | null>(null);
 
@@ -16,9 +18,10 @@ const useClickOutside = <T extends HTMLElement>({
       }
     }
 
-    window.addEventListener("click", handleClickOutside);
+    window.addEventListener("click", handleClickOutside, stopBubbling);
 
-    return () => window.removeEventListener("click", handleClickOutside);
+    return () =>
+      window.removeEventListener("click", handleClickOutside, stopBubbling);
   }, [closeFn]);
 
   return ref;

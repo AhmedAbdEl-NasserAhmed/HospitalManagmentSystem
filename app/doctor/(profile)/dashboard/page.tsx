@@ -1,5 +1,10 @@
+import DoctorOperationProcess from "@/ui/DoctorOperationProcess";
+import MainDoctorDashboard from "@/ui/MainDoctorDashboard";
+
 const page = () => {
-  return <div>Dashboard</div>;
+  const isFinished = false;
+
+  return isFinished ? <MainDoctorDashboard /> : <DoctorOperationProcess />;
 };
 
 export default page;

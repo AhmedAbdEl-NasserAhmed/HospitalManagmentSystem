@@ -19,14 +19,17 @@ function buttonStyles(size: string) {
   }
 }
 
-interface Props {
+const CustomizedButton = ({
+  onClick,
+  size,
+  children,
+  type
+}: {
   size: string;
   children: React.ReactNode;
   type: "submit" | "button";
   onClick?: () => void;
-}
-
-const CustomizedButton = ({ onClick, size, children, type }: Props) => {
+}) => {
   return (
     <button
       onClick={onClick}

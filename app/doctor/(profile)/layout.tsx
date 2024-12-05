@@ -1,12 +1,13 @@
 import AsideDoctorDashboard from "@/ui/AsideDoctorDashboard";
+import DoctorDashboardNav from "@/ui/DoctorDashboardNav";
 
 const layout = ({ children }) => {
   return (
-    <div className="flex h-screen">
+    <div className="flex ">
       <AsideDoctorDashboard />
       <div className="flex flex-col w-full">
-        <nav className="bg-gree-500 h-[60px] bg-yellow-300"></nav>
-        <div className="grow bg-red-500">{children}</div>
+        <DoctorDashboardNav />
+        <div className="grow">{children}</div>
       </div>
     </div>
   );
