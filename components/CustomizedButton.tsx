@@ -9,7 +9,7 @@ function buttonStyles(size: string) {
     case "small":
       return {
         borderRadius: "0.6rem",
-        paddingInline: "1rem",
+        paddingInline: "1.4rem",
         paddingBlock: "0.6rem"
       };
     default:

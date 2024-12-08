@@ -30,7 +30,6 @@ const VerifyCodeForm = ({
   function onSubmit(data: Schema) {
     push(to);
     handleOnSubmit();
-    console.log(data);
   }
 
   return (

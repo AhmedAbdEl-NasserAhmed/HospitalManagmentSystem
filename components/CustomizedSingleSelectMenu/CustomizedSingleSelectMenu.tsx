@@ -1,5 +1,6 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import { UseFormRegisterReturn } from "react-hook-form";
 
 const CustomizedSingleSelectMenu = ({
   options,
@@ -7,15 +8,22 @@ const CustomizedSingleSelectMenu = ({
   errorMessage,
   label,
   placeholder,
-  value
+  value,
+  name,
+  isDisabled,
+  register
 }: {
-  options: { id: number; option: string }[];
-  onChange: (option: string) => void;
+  options: { id: number; option: string; value: string }[];
+  onChange?: (option: string) => void;
   errorMessage?: string;
   label: string;
   placeholder?: string;
   defaultValue?: string;
   value?: string;
+  name?: string;
+  shouldBeHidden?: boolean;
+  isDisabled?: (value: string) => boolean;
+  register?: UseFormRegisterReturn;
 }) => {
   function handleOnChange(e: ChangeEvent<HTMLSelectElement>) {
     onChange(e.target.value);
@@ -28,14 +36,21 @@ const CustomizedSingleSelectMenu = ({
           {label}
         </label>
         <select
+          name={name}
           value={value}
           onChange={handleOnChange}
           className="px-2 py-3 border-borderLight border-[0.8px] rounded-md w-full outline-none text-xl"
+          {...register}
         >
           {placeholder && <option value="">{placeholder}</option>}
 
           {options.map((option) => (
-            <option key={option.id} value={option.option}>
+            <option
+              disabled={isDisabled ? isDisabled(option.option) : null}
+              key={option.id}
+              value={option.value}
+              className="disabled:bg-secondary disabled:opacity-40 disabled:line-through"
+            >
               {option.option}
             </option>
           ))}

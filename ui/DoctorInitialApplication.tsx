@@ -26,7 +26,7 @@ const DoctorInitialApplication = () => {
   useEffect(() => {
     SessionStorage.addItem("step", step);
   }, [step]);
-  
+
   return (
     <div className="bg-white rounded-md flex flex-col gap-8">
       <div className="p-8 border-b-[0.8px] border-borderLight ">
@@ -52,7 +52,7 @@ const DoctorInitialApplication = () => {
           ]}
         />
       </div>
-      <div className="px-8 py-4 h-screen ">
+      <div className="px-8 py-4 h-max ">
         <DoctorInitialApplicationStep />
       </div>
     </div>

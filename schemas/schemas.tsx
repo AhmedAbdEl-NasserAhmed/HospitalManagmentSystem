@@ -1,3 +1,4 @@
+import { isWithinRange } from "@/helpers/helpers";
 import { z } from "zod";
 
 export const doctorSignInFormSchema = z.object({
@@ -38,7 +39,9 @@ export const VerifyForgetPasswordOTPSchema = z.object({
 
 export const createDoctorAccountFromSchema = z.object({
   name: z
-    .string()
+    .string({
+      required_error: "Please enter a valid Phone Number"
+    })
     .min(1, { message: "Name is required" })
     .max(50, { message: "Name must not exceed 50 characters" }),
 
@@ -155,4 +158,29 @@ export const PersonalDetailsFormSchema = z.object({
     })
     .min(1, "About Me must not be least 20 characters.")
     .max(500, "About Me must not exceed 500 characters.")
+});
+
+const timeObjectSchema = z.object({
+  from: z
+    .string()
+    .regex(/^(0[1-9]|1[0-2]):[0-5][0-9]\s(AM|PM)$/, {
+      message: "Invalid time format HH:MM AM/PM."
+    })
+    .refine(isWithinRange, {
+      message: "'from' time must be between 09:00 AM and 05:00 PM"
+    }),
+  to: z
+    .string()
+    .regex(/^(0[1-9]|1[0-2]):[0-5][0-9]\s(AM|PM)$/, {
+      message: "Invalid time format HH:MM AM/PM."
+    })
+    .refine(isWithinRange, {
+      message: "'to' time must be between 09:00 AM and 05:00 PM"
+    })
+});
+
+export const formSchema = z.object({
+  time: z
+    .array(timeObjectSchema)
+    .min(1, { message: "At least one time entry is required" })
 });

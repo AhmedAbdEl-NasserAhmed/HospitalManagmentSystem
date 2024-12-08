@@ -3,7 +3,7 @@ import DoctorDashboardNav from "@/ui/DoctorDashboardNav";
 
 const layout = ({ children }) => {
   return (
-    <div className="flex ">
+    <div className="flex min-h-screen ">
       <AsideDoctorDashboard />
       <div className="flex flex-col w-full">
         <DoctorDashboardNav />

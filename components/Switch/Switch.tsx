@@ -1,4 +1,3 @@
-import { SetStateAction } from "react";
 import Switch from "react-switch";
 
 const SwitchInput = ({

@@ -8,8 +8,6 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-
-
 type Schema = z.infer<typeof VerifyForgetPasswordEmailSchema>;
 
 const VerifyForgetPasswordEmail = () => {
@@ -22,8 +20,6 @@ const VerifyForgetPasswordEmail = () => {
   } = useForm<Schema>({
     resolver: zodResolver(VerifyForgetPasswordEmailSchema)
   });
-
-  console.log(errors);
 
   function onSubmit() {
     push("/doctor/verifycode");

@@ -7,7 +7,7 @@ const Modal = ({
   children
 }: {
   button: ReactElement;
-  children?: ReactNode;
+  children?: ReactElement;
 }) => {
   const [openModal, setOpenModal] = useState<boolean>(false);
 
@@ -21,8 +21,10 @@ const Modal = ({
       {cloneElement(button, { onClick: () => setOpenModal(true) })}
       {openModal && (
         <div className="fixed w-screen h-screen top-0 left-0 flex items-center justify-center bg-black bg-opacity-25 backdrop-blur-sm z-50">
-          <div ref={ref} className="bg-white h-[500px] w-1/2">
-            Hey Modal
+          <div ref={ref}>
+            {cloneElement(children, {
+              setCloseModal: () => setOpenModal(false)
+            })}
           </div>
         </div>
       )}

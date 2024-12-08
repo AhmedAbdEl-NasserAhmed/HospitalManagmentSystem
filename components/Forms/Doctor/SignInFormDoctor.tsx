@@ -19,7 +19,6 @@ const SignInFormDoctor = () => {
     resolver: zodResolver(doctorSignInFormSchema)
   });
 
-  console.log(errors);
 
   function onSubmit() {}
 

@@ -48,8 +48,6 @@ const PersonalDetailsForm = () => {
 
   const formData = watch();
 
-  console.log(formData);
-
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -79,10 +77,12 @@ const PersonalDetailsForm = () => {
                 options={[
                   {
                     id: 1,
+                    value: "Dr",
                     option: "Dr"
                   },
                   {
                     id: 2,
+                    value: "Professor",
                     option: "Professor"
                   }
                 ]}
@@ -169,12 +169,16 @@ const PersonalDetailsForm = () => {
               placeholder="Choose years of Experience"
               label="Years of Experience "
               options={[
-                { id: 1, option: "Less than 1 year" },
-                { id: 2, option: "1-2 years" },
-                { id: 3, option: "3-5 years" },
-                { id: 4, option: "6-9 years" },
-                { id: 5, option: "10-14 years" },
-                { id: 10, option: "15+ years" }
+                {
+                  id: 1,
+                  option: "Less than 1 year",
+                  value: "Less than 1 year"
+                },
+                { id: 2, option: "1-2 years", value: "1-2 years" },
+                { id: 3, option: "3-5 years", value: "3-5 years" },
+                { id: 4, option: "6-9 years", value: "6-9 years" },
+                { id: 5, option: "10-14 years", value: "10-14 years" },
+                { id: 10, option: "15+ years", value: "15+ years" }
               ]}
             />
           )}
@@ -201,11 +205,15 @@ const PersonalDetailsForm = () => {
               onChange={onChange}
               label="Gender "
               options={[
-                { id: 1, option: "Male" },
-                { id: 2, option: "Female" },
-                { id: 3, option: "Non-Binary" },
-                { id: 4, option: "Prefer not to say" },
-                { id: 5, option: "Other" }
+                { id: 1, option: "Male", value: "Male" },
+                { id: 2, option: "Female", value: "Female" },
+                { id: 3, option: "Non-Binary", value: "Non-Binary" },
+                {
+                  id: 4,
+                  option: "Prefer not to say",
+                  value: "Prefer not to say"
+                },
+                { id: 5, option: "Other", value: "Other" }
               ]}
             />
           )}

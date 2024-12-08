@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import stepperSlice from "./features/slices/stepper/stepperSlice";
+import doctorStartingProcessSlice from "./features/slices/doctorStartingProcess/doctorStartingProcessSlice";
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
-      stepper: stepperSlice
+      stepper: stepperSlice,
+      doctorProcess: doctorStartingProcessSlice
     }
   });
 };
