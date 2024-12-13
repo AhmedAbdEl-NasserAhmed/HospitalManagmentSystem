@@ -22,7 +22,7 @@ const useClickOutside = <T extends HTMLElement>({
 
     return () =>
       window.removeEventListener("click", handleClickOutside, stopBubbling);
-  }, [closeFn]);
+  }, [closeFn, stopBubbling]);
 
   return ref;
 };

@@ -21,12 +21,6 @@ const DoctorInitialApplicationStep = dynamic(
 );
 
 const DoctorInitialApplication = () => {
-  const step = useAppSelector((state) => state.stepper.currentStep);
-
-  useEffect(() => {
-    SessionStorage.addItem("step", step);
-  }, [step]);
-
   return (
     <div className="bg-white rounded-md flex flex-col gap-8">
       <div className="p-8 border-b-[0.8px] border-borderLight ">

@@ -3,6 +3,9 @@
 import { useAppSelector } from "@/lib/hooks";
 import DoctorOperationalHours from "./DoctorOperationalHours";
 
+import DoctorPracticeStaff from "./DoctorPracticeStaff";
+import Menus from "@/components/CustomizedContextMenu/CustomizedContextMenu";
+
 const DoctorInitialApplicationStep = () => {
   const currentStep = useAppSelector((state) => state.stepper.currentStep);
 
@@ -11,7 +14,11 @@ const DoctorInitialApplicationStep = () => {
       return <DoctorOperationalHours />;
     }
     case 1: {
-      return <p>Second Step</p>;
+      return (
+        <Menus>
+          <DoctorPracticeStaff />
+        </Menus>
+      );
     }
     case 2: {
       return <p>Third Step</p>;
@@ -28,3 +35,19 @@ const DoctorInitialApplicationStep = () => {
 };
 
 export default DoctorInitialApplicationStep;
+
+{
+  /* <Menus>
+              <Menus.Menu>
+                <Menus.Toggle id="edit" />
+                <Menus.List id="edit">
+                  <Modal button={<button className="text-xl">Edit</button>}>
+                    <p>Are you sure that you want to Edit this item</p>
+                  </Modal>
+                  <Modal button={<button className="text-xl">Delete</button>}>
+                    <p>Are you sure that you want to delete this item</p>
+                  </Modal>
+                </Menus.List>
+              </Menus.Menu>
+            </Menus> */
+}

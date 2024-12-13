@@ -23,19 +23,26 @@ const CustomizedButton = ({
   onClick,
   size,
   children,
-  type
+  type,
+  disabled,
+  className
 }: {
   size: string;
   children: React.ReactNode;
   type: "submit" | "button";
   onClick?: () => void;
+  disabled?: boolean;
+  className?: string;
 }) => {
   return (
     <button
+      disabled={disabled}
       onClick={onClick}
       type={type}
       style={buttonStyles(size)}
-      className="bg-main-gradient text-white font-bold "
+      className={`${
+        disabled ? "bg-borderLight cursor-not-allowed" : "bg-main-gradient"
+      } text-white font-bold ${className} `}
     >
       {children}
     </button>

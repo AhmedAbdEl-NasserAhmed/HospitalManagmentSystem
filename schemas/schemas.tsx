@@ -184,3 +184,28 @@ export const formSchema = z.object({
     .array(timeObjectSchema)
     .min(1, { message: "At least one time entry is required" })
 });
+
+export const doctorsStaffSchema = z.object({
+  name: z
+    .string()
+    .min(1, "Name is required")
+    .max(100, "Name must not exceed 100 characters"),
+  mobileNumber: z
+    .string()
+    .regex(/^\d{10,15}$/, "Mobile number must be between 10-15 digits"),
+  emailAddress: z.string().email("Invalid email address"),
+  specialty: z.string().min(1, "Specialty is required"),
+  doctorGender: z.enum([
+    "Male",
+    "Female",
+    "Non-Binary",
+    "Prefer not to say",
+    "Other"
+  ]),
+  dateOfBirth: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/, "Date of Birth must be in YYYY-MM-DD format"),
+  notification: z.array(z.enum(["sms", "email"])).optional(),
+  allPermissions: z.string().optional(),
+  oneMonthReporting: z.string().optional()
+});

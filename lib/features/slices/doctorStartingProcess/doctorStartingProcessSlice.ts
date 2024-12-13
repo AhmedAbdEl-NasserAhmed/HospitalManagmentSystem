@@ -1,10 +1,17 @@
+import SessionStorage from "@/helpers/sessionStorage";
 import { createSlice } from "@reduxjs/toolkit";
+
+const doctorStartingProcessState = SessionStorage.getItem(
+  "doctorProcess",
+  true
+);
 
 const initialState = {
   duration: "15",
   isVideoConsultationAvailable: false,
   videoDuration: "15",
-  workingDays: {}
+  workingDays: {},
+  staffDoctors: []
 };
 
 const doctorStartingProcess = createSlice({
@@ -23,12 +30,14 @@ const doctorStartingProcess = createSlice({
     addWorkingDays(state, action) {
       state.workingDays = { ...state.workingDays, ...action.payload };
     },
-
     removeWorkingDays(state, action) {
       state.workingDays = {
         ...state.workingDays,
         [action.payload.name]: action.payload.value
       };
+    },
+    addStaffDoctor(state, action) {
+      state.staffDoctors = [...state.staffDoctors, action.payload];
     }
   }
 });
@@ -38,7 +47,8 @@ export const {
   setIsVideoConsultationAvailable,
   setVideoDuration,
   addWorkingDays,
-  removeWorkingDays
+  removeWorkingDays,
+  addStaffDoctor
 } = doctorStartingProcess.actions;
 
 export default doctorStartingProcess.reducer;

@@ -11,10 +11,10 @@ import {
 } from "@/lib/features/slices/doctorStartingProcess/doctorStartingProcessSlice";
 import { nextStep } from "@/lib/features/slices/stepper/stepperSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { Controller, useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
 
 const DoctorOperationalHoursForm = () => {
-  const { control } = useForm();
+  const [workingDaysLength, setWorkingDaysLength] = useState<number>(0);
 
   const dispatch = useAppDispatch();
 
@@ -27,6 +27,18 @@ const DoctorOperationalHoursForm = () => {
   const videoDuration = useAppSelector(
     (state) => state.doctorProcess.videoDuration
   );
+
+  const workingDays = useAppSelector(
+    (state) => state.doctorProcess.workingDays
+  );
+
+  useEffect(() => {
+    for (const day in workingDays) {
+      workingDays[day].length > 0
+        ? setWorkingDaysLength(workingDays[day].length)
+        : setWorkingDaysLength(0);
+    }
+  }, [workingDays]);
 
   function handleDurationChange(e: string) {
     dispatch(setDuration(e));
@@ -85,8 +97,8 @@ const DoctorOperationalHoursForm = () => {
         <div>
           <div className="p-4 bg-secondaryBackground flex items-center rounded-lg gap-6 ">
             <SwitchInput
-              onChange={handleSwitchChange}
               value={isVideoConsultation}
+              onChange={handleSwitchChange}
             />
             <div className="flex flex-col gap-2">
               <h2 className="font-semibold text-lg">
@@ -144,7 +156,10 @@ const DoctorOperationalHoursForm = () => {
       <span className="w-full h-[0.5px] bg-borderLight">&nbsp;</span>
       <div className="self-end w-[80px]">
         <CustomizedButton
-          onClick={() => dispatch(nextStep(1))}
+          disabled={workingDaysLength === 0}
+          onClick={() => {
+            dispatch(nextStep(1));
+          }}
           size="large"
           type="button"
         >

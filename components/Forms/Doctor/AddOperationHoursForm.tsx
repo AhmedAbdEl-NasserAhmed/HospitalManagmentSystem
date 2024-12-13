@@ -18,16 +18,15 @@ type Schema = z.infer<typeof formSchema>;
 const AddOperationHoursForm = ({
   dayName,
   setCloseModal,
-  selectedTimes,
-  duration
+  selectedTimes
 }: {
   dayName: string;
   setCloseModal?: () => void;
   selectedTimes: { id: string; to: string; from: string }[];
-
-  duration: string;
 }) => {
   const dispatch = useAppDispatch();
+
+  const duration = useAppSelector((state) => state.doctorProcess.duration);
 
   const {
     watch,

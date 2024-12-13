@@ -17,8 +17,6 @@ const OperationHoursRow = ({ day }: { day: { id: number; name: string } }) => {
     (state) => state.doctorProcess.workingDays
   );
 
-  const duration = useAppSelector((state) => state.doctorProcess.duration);
-
   useEffect(() => {
     if (workingDays[day.name]?.length > 0) {
       setIsAvailable(true);
@@ -73,7 +71,6 @@ const OperationHoursRow = ({ day }: { day: { id: number; name: string } }) => {
           )}
           <Modal button={<OperationHourButton />}>
             <AddOperationHoursForm
-              duration={duration}
               dayName={day.name}
               selectedTimes={workingDays[day.name]}
             />

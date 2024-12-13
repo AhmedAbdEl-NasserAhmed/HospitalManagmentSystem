@@ -6,8 +6,8 @@ const DoctorPracticeHours = () => {
       <div className="flex flex-col gap-2">
         <h2 className="text-2xl font-semibold">Add Practice Days</h2>
         <p className="text-lg text-textMuted">
-          Specify the days you'll be practising and the operating hours of your
-          clinic.
+          Specify the days &apos; &lsquo;ll be practising and the operating
+          hours of your clinic.
         </p>
       </div>
       <OperationHoursList />
